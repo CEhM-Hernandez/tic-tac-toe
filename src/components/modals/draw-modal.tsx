@@ -1,8 +1,8 @@
-import { useGame } from "@/hooks/use-game";
-import { ResetButton } from "@/components/reset-button";
+import { useGame } from '@/hooks/use-game'
+import { ResetButton } from '@/components/reset-button'
 
 export function DrawModal() {
-  const { handleReset } = useGame();
+  const { handleReset } = useGame()
 
   return (
     <div
@@ -23,5 +23,5 @@ export function DrawModal() {
         <ResetButton className="text-lg" />
       </div>
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import { useGame } from "@/hooks/use-game";
-import { ResetButton } from "../reset-button";
+import { useGame } from '@/hooks/use-game'
+import { ResetButton } from '../reset-button'
 
 export function WinnerBanner() {
-  const { winner, handleReset } = useGame();
+  const { winner, handleReset } = useGame()
 
   return (
     <div
@@ -19,11 +19,9 @@ export function WinnerBanner() {
         >
           x
         </span>
-        <h2 className="text-4xl font-bold text-white">
-          ¡El ganador es: {winner}!
-        </h2>
+        <h2 className="text-4xl font-bold text-white">¡El ganador es: {winner}!</h2>
         <ResetButton className="text-lg" />
       </div>
     </div>
-  );
+  )
 }
