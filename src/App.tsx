@@ -1,4 +1,5 @@
 import { Board } from '@/components/board'
+import { GameHistoryPanel } from '@/components/game-history-panel'
 import { Header } from '@/components/header/header'
 import { DrawModal } from '@/components/modals/draw-modal'
 import { WinnerModal } from '@/components/modals/winner-modal'
@@ -12,8 +13,9 @@ function App() {
 
       <Header />
 
-      <main className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-10">
+      <main className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 p-4 sm:p-6 md:p-10">
         <Board />
+        <GameHistoryPanel />
       </main>
     </div>
   )

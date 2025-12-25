@@ -15,4 +15,12 @@ interface GameContextValue extends GameState {
   handleReset: () => void
 }
 
-export type { Player, Cell, Winner, GameState, GameContextValue }
+type History = Winner[]
+
+interface GameHistoryContextValue {
+  history: History
+  addToHistory: (winner: Winner) => void
+  clearHistory: () => void
+}
+
+export type { Cell, GameContextValue, GameHistoryContextValue, GameState, History, Player, Winner }
