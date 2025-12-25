@@ -1,20 +1,5 @@
+import type { Cell, GameContextValue, Player, Winner } from '@/types/game'
 import * as React from 'react'
-
-type Player = 'X' | 'O'
-type Cell = Player | null
-type Winner = Player | 'Draw' | null
-
-interface GameState {
-  currentPlayer: Player
-  board: Cell[]
-  errorCell: number | null
-  winner: Winner
-}
-
-interface GameContextValue extends GameState {
-  handleClick: (index: number) => void
-  handleReset: () => void
-}
 
 const GameContext = React.createContext<GameContextValue | null>(null)
 
@@ -87,6 +72,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     board,
     errorCell,
     winner,
+    isDraw: winner === 'Draw',
     handleClick,
     handleReset
   }

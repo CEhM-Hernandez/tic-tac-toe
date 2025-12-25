@@ -1,4 +1,6 @@
 import { useGame } from '@/hooks/use-game'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 type ResetButtonProps = {
   className?: string
@@ -8,15 +10,14 @@ export function ResetButton({ className, ...props }: ResetButtonProps) {
   const { handleReset, board } = useGame()
 
   return (
-    <button
+    <Button
       onClick={handleReset}
-      className={`px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-700 transition-colors duration-200 cursor-pointer ${
-        className ?? ''
-      }`}
+      variant="destructive"
+      className={cn('cursor-pointer bg-destructive', className)}
       disabled={board.every((cell) => cell === null)}
       {...props}
     >
       Reiniciar Juego
-    </button>
+    </Button>
   )
 }
