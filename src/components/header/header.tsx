@@ -23,7 +23,7 @@ export function Header() {
 
         {/* Indicador de turno */}
         <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground hidden xs:inline">Turno:</span>
+          <span className="text-sm text-muted-foreground">Turno de</span>
           <Badge
             variant={currentPlayer === 'X' ? 'default' : 'secondary'}
             className="font-bold rounded-full size-8"
