@@ -15,7 +15,7 @@ export function Header() {
             <span className="text-primary-foreground font-bold text-lg">#</span>
           </div>
           <div className="hidden sm:block">
-            <h1 className="text-xl font-bold leading-tight">Tic Tac Toe</h1>
+            <h1 className="text-xl font-bold leading-tight">Tres en raya</h1>
             <p className="text-xs text-muted-foreground">Clásico juego de mesa</p>
           </div>
         </div>
