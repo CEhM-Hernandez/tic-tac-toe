@@ -7,7 +7,7 @@ export function Board() {
   const { board, errorCell, handleClick } = useGame()
 
   return (
-    <section className="grid grid-cols-3 grid-rows-3 gap-4 aspect-square w-full max-w-lg">
+    <section className="grid grid-cols-3 grid-rows-3 gap-4 aspect-square w-full max-w-lg place-self-center self-center">
       {board.map((value, index) => (
         <Button
           onClick={() => handleClick(index)}

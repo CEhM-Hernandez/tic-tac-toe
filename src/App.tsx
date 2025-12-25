@@ -7,13 +7,13 @@ import '@/globals.css'
 
 function App() {
   return (
-    <div className="flex flex-col h-dvh w-full">
+    <div className="flex flex-col min-h-dvh w-full overflow-x-hidden">
       <WinnerModal />
       <DrawModal />
 
       <Header />
 
-      <main className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 p-4 sm:p-6 md:p-10">
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-10 relative">
         <Board />
         <GameHistoryPanel />
       </main>

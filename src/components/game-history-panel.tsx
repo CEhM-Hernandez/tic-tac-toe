@@ -1,12 +1,15 @@
-import { useGameHistory } from '@/hooks/use-game-history'
+import { CollapsibleContainer } from '@/components/collapsible-container'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Badge } from '@/components/ui/badge'
-import { Trash2 } from 'lucide-react'
+import { useCollapsible } from '@/hooks/use-collapsible'
+import { useGameHistory } from '@/hooks/use-game-history'
+import { Trash2, X } from 'lucide-react'
 
-export function GameHistoryPanel() {
+function GameHistoryContent() {
   const { history, clearHistory } = useGameHistory()
+  const { setIsOpen } = useCollapsible()
 
   const stats = {
     xWins: history.filter((w) => w === 'X').length,
@@ -15,20 +18,32 @@ export function GameHistoryPanel() {
   }
 
   return (
-    <Card className="w-full max-w-xs">
+    <Card className="w-full">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">Historial</CardTitle>
-          {history.length > 0 && (
+          <div className="flex items-center gap-1">
+            {history.length > 0 && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={clearHistory}
+                title="Limpiar historial"
+                className="size-8 text-muted-foreground hover:text-destructive cursor-pointer"
+              >
+                <Trash2 className="size-4" />
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="icon"
-              onClick={clearHistory}
-              className="h-8 w-8 text-muted-foreground hover:text-destructive"
+              onClick={() => setIsOpen(false)}
+              title="Cerrar historial"
+              className="size-8 text-muted-foreground hover:text-foreground cursor-pointer"
             >
-              <Trash2 className="h-4 w-4" />
+              <X className="size-4" />
             </Button>
-          )}
+          </div>
         </div>
         <CardDescription>
           {history.length} {history.length === 1 ? 'partida' : 'partidas'} jugadas
@@ -79,5 +94,38 @@ export function GameHistoryPanel() {
         )}
       </CardContent>
     </Card>
+  )
+}
+
+function DesktopGameHistory() {
+  return (
+    <div className="hidden lg:block fixed right-0 top-1/2 -translate-y-1/2 z-10">
+      <CollapsibleContainer direction="horizontal">
+        <div className="w-72 pr-4">
+          <GameHistoryContent />
+        </div>
+      </CollapsibleContainer>
+    </div>
+  )
+}
+
+function MobileGameHistory() {
+  return (
+    <div className="lg:hidden fixed bottom-4 right-4 z-10">
+      <CollapsibleContainer direction="vertical">
+        <div className="w-72 mb-14">
+          <GameHistoryContent />
+        </div>
+      </CollapsibleContainer>
+    </div>
+  )
+}
+
+export function GameHistoryPanel() {
+  return (
+    <>
+      <DesktopGameHistory />
+      <MobileGameHistory />
+    </>
   )
 }
