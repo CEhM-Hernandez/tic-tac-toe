@@ -1,7 +1,10 @@
 import type { Cell, GameContextValue, Player, Winner } from '@/types/game'
+import JSConfetti from 'js-confetti'
 import * as React from 'react'
 
 const GameContext = React.createContext<GameContextValue | null>(null)
+
+const confetti = new JSConfetti()
 
 function checkWinner(board: Cell[]): Winner {
   const size = 3
@@ -56,6 +59,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const result = checkWinner(newBoard)
     if (result) {
       setWinner(result)
+      if (result !== 'Draw') confetti.addConfetti()
     } else {
       handleTurn()
     }
