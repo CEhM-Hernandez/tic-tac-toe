@@ -10,7 +10,6 @@ export function Header() {
   return (
     <header className="w-full shadow-lg">
       <div className="flex items-center justify-between gap-4 py-4 px-2 max-w-xl mx-auto">
-        {/* Logo y título */}
         <div className="flex items-center gap-3">
           <div className="size-10 rounded-lg bg-primary flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-lg">#</span>
@@ -21,7 +20,6 @@ export function Header() {
           </div>
         </div>
 
-        {/* Indicador de turno */}
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">Turno de</span>
           <Badge
@@ -32,7 +30,6 @@ export function Header() {
           </Badge>
         </div>
 
-        {/* Acciones */}
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
