@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useGame } from '@/hooks/use-game'
 import { Circle, RefreshCw, X } from 'lucide-react'
+import { ThemeButton } from './theme-button'
 
 export function Header() {
   const { currentPlayer, handleReset } = useGame()
@@ -42,6 +43,7 @@ export function Header() {
             <span className="sr-only">Reiniciar</span>
           </Button>
         </div>
+        <ThemeButton />
       </div>
       <Separator className="w-full" />
     </header>
