@@ -1,23 +1,55 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { useApp } from '@/hooks/use-app'
 import { useGame } from '@/hooks/use-game'
-import { Circle, RefreshCw, X } from 'lucide-react'
-import { ThemeButton } from './theme-button'
+import { ArrowLeft, Circle, LogOut, RefreshCw, X } from 'lucide-react'
+import { ThemeButton } from '@/components/header/theme-button'
 
 export function Header() {
-  const { currentPlayer, handleReset } = useGame()
+  const { currentPlayer, handleReset, isMyTurn } = useGame()
+  const { gameMode, playerSymbol, goToMenu, leaveRoom } = useApp()
+
+  const isOnline = gameMode === 'online'
 
   return (
     <header className="w-full shadow-lg">
       <div className="flex items-center justify-between gap-4 py-4 px-2 max-w-xl mx-auto">
         <div className="flex items-center gap-3">
-          <div className="size-10 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">#</span>
-          </div>
+          {isOnline ? (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={leaveRoom}
+              className="size-10"
+              title="Abandonar partida"
+            >
+              <LogOut className="size-5" />
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={goToMenu}
+              className="size-10"
+              title="Volver al menú"
+            >
+              <ArrowLeft className="size-5" />
+            </Button>
+          )}
           <div className="hidden sm:block">
             <h1 className="text-xl font-bold leading-tight">Tres en raya</h1>
-            <p className="text-xs text-muted-foreground">Clásico juego de mesa</p>
+            {isOnline && playerSymbol && (
+              <p className="text-xs text-muted-foreground">
+                Juegas con {playerSymbol === 'X' ? 'X' : 'O'} •{' '}
+                {isMyTurn ? (
+                  <span className="text-green-500 font-medium">Tu turno</span>
+                ) : (
+                  <span className="text-yellow-500">Esperando...</span>
+                )}
+              </p>
+            )}
+            {!isOnline && <p className="text-xs text-muted-foreground">Partida local</p>}
           </div>
         </div>
 

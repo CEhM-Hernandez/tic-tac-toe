@@ -11,6 +11,7 @@ interface GameState {
 
 interface GameContextValue extends GameState {
   isDraw: boolean
+  isMyTurn: boolean
   handleClick: (index: number) => void
   handleReset: () => void
 }
@@ -23,4 +24,27 @@ interface GameHistoryContextValue {
   clearHistory: () => void
 }
 
-export type { Cell, GameContextValue, GameHistoryContextValue, GameState, History, Player, Winner }
+// Tipos para eventos de socket
+interface GameMoveData {
+  roomCode: string
+  index: number
+  player: Player
+}
+
+interface GameStateData {
+  board: Cell[]
+  currentPlayer: Player
+  winner: Winner
+}
+
+export type {
+  Cell,
+  GameContextValue,
+  GameHistoryContextValue,
+  GameMoveData,
+  GameState,
+  GameStateData,
+  History,
+  Player,
+  Winner
+}
